@@ -83,10 +83,8 @@ API_KEY="your-gemini-api-key"
 - 🧭 Vite のビルド整合性を保つため、リリース前に `npm run build` を実行し、バンドルエラーが無いか確認してください。
 
 ## 🖼️ スクリーンショット
-<div align="center">
-  <img src="https://dummyimage.com/1200x720/161b22/7f5af0&text=Ask+the+Manual+Chat+View" alt="アプリのチャット画面サンプル" width="85%" />
-  <p><em>ダークテーマのチャット画面イメージ</em></p>
-</div>
+
+![](2025-11-09 200852.png)
 
 ## 📁 プロジェクト構成
 ```
