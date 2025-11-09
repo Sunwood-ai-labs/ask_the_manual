@@ -1,6 +1,8 @@
 <div align="center">
   <h1>マニュアルに聞こう 📚💬</h1>
-  <img src="https://dummyimage.com/1200x400/0d1117/ffffff&text=Ask+the+Manual" alt="Ask the Manual hero banner" width="80%" />
+
+![](Whisk_7307e341690c0c3995e414925d2f43f0dr.jpeg)
+
   <p>Gemini FileSearch を活用してマニュアルから即座に答えを引き出す、ドキュメント指向チャットアプリです。</p>
 </div>
 
