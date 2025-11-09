@@ -116,14 +116,14 @@ const App: React.FC = () => {
             }
         } else {
             console.log('window.aistudio.openSelectKey() not available.');
-            alert('API key selection is not available in this environment.');
+            alert('APIキーの選択はこの環境では利用できません。');
         }
     };
 
     const handleUploadAndStartChat = async () => {
         if (!isApiKeySelected) {
-            setApiKeyError("Please select your Gemini API Key first.");
-            throw new Error("API Key is required.");
+            setApiKeyError("最初にGemini APIキーを選択してください。");
+            throw new Error("APIキーが必要です。");
         }
         if (files.length === 0) return;
         
@@ -132,35 +132,35 @@ const App: React.FC = () => {
         try {
             geminiService.initialize();
         } catch (err) {
-            handleError("Initialization failed. Please select a valid API Key.", err);
+            handleError("初期化に失敗しました。有効なAPIキーを選択してください。", err);
             throw err;
         }
         
         setStatus(AppStatus.Uploading);
         const totalSteps = files.length + 2;
-        setUploadProgress({ current: 0, total: totalSteps, message: "Creating document index..." });
+        setUploadProgress({ current: 0, total: totalSteps, message: "ドキュメントインデックスを作成中..." });
 
         try {
             const storeName = `chat-session-${Date.now()}`;
             const ragStoreName = await geminiService.createRagStore(storeName);
             
-            setUploadProgress({ current: 1, total: totalSteps, message: "Generating embeddings..." });
+            setUploadProgress({ current: 1, total: totalSteps, message: "埋め込みを生成中..." });
 
             for (let i = 0; i < files.length; i++) {
                 setUploadProgress(prev => ({ 
                     ...(prev!),
                     current: i + 1,
-                    message: "Generating embeddings...",
+                    message: "埋め込みを生成中...",
                     fileName: `(${i + 1}/${files.length}) ${files[i].name}`
                 }));
                 await geminiService.uploadToRagStore(ragStoreName, files[i]);
             }
             
-            setUploadProgress({ current: files.length + 1, total: totalSteps, message: "Generating suggestions...", fileName: "" });
+            setUploadProgress({ current: files.length + 1, total: totalSteps, message: "提案を生成中...", fileName: "" });
             const questions = await geminiService.generateExampleQuestions(ragStoreName);
             setExampleQuestions(questions);
 
-            setUploadProgress({ current: totalSteps, total: totalSteps, message: "All set!", fileName: "" });
+            setUploadProgress({ current: totalSteps, total: totalSteps, message: "準備完了！", fileName: "" });
             
             await new Promise(resolve => setTimeout(resolve, 500)); // Short delay to show "All set!"
 
@@ -168,9 +168,9 @@ const App: React.FC = () => {
             if (files.length === 1) {
                 docName = files[0].name;
             } else if (files.length === 2) {
-                docName = `${files[0].name} & ${files[1].name}`;
+                docName = `${files[0].name} と ${files[1].name}`;
             } else {
-                docName = `${files.length} documents`;
+                docName = `${files.length}件のドキュメント`;
             }
             setDocumentName(docName);
 
@@ -181,11 +181,11 @@ const App: React.FC = () => {
         } catch (err) {
             const errorMessage = err instanceof Error ? err.message.toLowerCase() : String(err).toLowerCase();
             if (errorMessage.includes('api key not valid') || errorMessage.includes('requested entity was not found')) {
-                setApiKeyError("The selected API key is invalid. Please select a different one and try again.");
+                setApiKeyError("選択したAPIキーは無効です。別のキーを選択してもう一度お試しください。");
                 setIsApiKeySelected(false);
                 setStatus(AppStatus.Welcome);
             } else {
-                handleError("Failed to start chat session", err);
+                handleError("チャットセッションの開始に失敗しました", err);
             }
             throw err;
         } finally {
@@ -225,10 +225,10 @@ const App: React.FC = () => {
         } catch (err) {
             const errorMessage: ChatMessage = {
                 role: 'model',
-                parts: [{ text: "Sorry, I encountered an error. Please try again." }]
+                parts: [{ text: "申し訳ありません、エラーが発生しました。もう一度お試しください。" }]
             };
             setChatHistory(prev => [...prev, errorMessage]);
-            handleError("Failed to get response", err);
+            handleError("応答の取得に失敗しました", err);
         } finally {
             setIsQueryLoading(false);
         }
@@ -239,27 +239,27 @@ const App: React.FC = () => {
             case AppStatus.Initializing:
                 return (
                     <div className="flex items-center justify-center h-screen">
-                        <Spinner /> <span className="ml-4 text-xl">Initializing...</span>
+                        <Spinner /> <span className="ml-4 text-xl">初期化中...</span>
                     </div>
                 );
             case AppStatus.Welcome:
                  return <WelcomeScreen onUpload={handleUploadAndStartChat} apiKeyError={apiKeyError} files={files} setFiles={setFiles} isApiKeySelected={isApiKeySelected} onSelectKey={handleSelectKey} />;
             case AppStatus.Uploading:
                 let icon = null;
-                if (uploadProgress?.message === "Creating document index...") {
+                if (uploadProgress?.message === "ドキュメントインデックスを作成中...") {
                     icon = <img src="https://services.google.com/fh/files/misc/applet-upload.png" alt="Uploading files icon" className="h-80 w-80 rounded-lg object-cover" />;
-                } else if (uploadProgress?.message === "Generating embeddings...") {
+                } else if (uploadProgress?.message === "埋め込みを生成中...") {
                     icon = <img src="https://services.google.com/fh/files/misc/applet-creating-embeddings_2.png" alt="Creating embeddings icon" className="h-240 w-240 rounded-lg object-cover" />;
-                } else if (uploadProgress?.message === "Generating suggestions...") {
+                } else if (uploadProgress?.message === "提案を生成中...") {
                     icon = <img src="https://services.google.com/fh/files/misc/applet-suggestions_2.png" alt="Generating suggestions icon" className="h-240 w-240 rounded-lg object-cover" />;
-                } else if (uploadProgress?.message === "All set!") {
+                } else if (uploadProgress?.message === "準備完了！") {
                     icon = <img src="https://services.google.com/fh/files/misc/applet-completion_2.png" alt="Completion icon" className="h-240 w-240 rounded-lg object-cover" />;
                 }
 
                 return <ProgressBar 
                     progress={uploadProgress?.current || 0} 
                     total={uploadProgress?.total || 1} 
-                    message={uploadProgress?.message || "Preparing your chat..."} 
+                    message={uploadProgress?.message || "チャットを準備中..."} 
                     fileName={uploadProgress?.fileName}
                     icon={icon}
                 />;
@@ -275,10 +275,10 @@ const App: React.FC = () => {
             case AppStatus.Error:
                  return (
                     <div className="flex flex-col items-center justify-center h-screen bg-red-900/20 text-red-300">
-                        <h1 className="text-3xl font-bold mb-4">Application Error</h1>
+                        <h1 className="text-3xl font-bold mb-4">アプリケーションエラー</h1>
                         <p className="max-w-md text-center mb-4">{error}</p>
-                        <button onClick={clearError} className="px-4 py-2 rounded-md bg-gem-mist hover:bg-gem-mist/70 transition-colors" title="Return to the welcome screen">
-                           Try Again
+                        <button onClick={clearError} className="px-4 py-2 rounded-md bg-gem-mist hover:bg-gem-mist/70 transition-colors" title="ようこそ画面に戻る">
+                           再試行
                         </button>
                     </div>
                 );

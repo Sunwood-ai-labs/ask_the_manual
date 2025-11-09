@@ -21,15 +21,15 @@ interface WelcomeScreenProps {
 
 const sampleDocuments = [
     {
-        name: 'Hyundai i10 Manual',
-        details: '562 pages, PDF',
+        name: 'Hyundai i10 マニュアル',
+        details: '562ページ, PDF',
         url: 'https://www.hyundai.com/content/dam/hyundai/in/en/data/connect-to-service/owners-manual/2025/i20&i20nlineFromOct2023-Present.pdf',
         icon: <CarIcon />,
         fileName: 'hyundai-i10-manual.pdf'
     },
     {
-        name: 'LG Washer Manual',
-        details: '36 pages, PDF',
+        name: 'LG 洗濯機マニュアル',
+        details: '36ページ, PDF',
         url: 'https://www.lg.com/us/support/products/documents/WM2077CW.pdf',
         icon: <WashingMachineIcon />,
         fileName: 'lg-washer-manual.pdf'
@@ -81,7 +81,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onUpload, apiKeyError, fi
         } catch (error) {
             console.error("Error fetching sample file:", error);
             if (error instanceof Error && error.message.includes('Failed to fetch')) {
-                alert(`Could not fetch the sample document. Please try uploading a local file instead.`);
+                alert(`サンプルドキュメントを取得できませんでした。代わりにローカルファイルをアップロードしてみてください。`);
             }
         } finally {
             setLoadingSample(null);
@@ -110,9 +110,9 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onUpload, apiKeyError, fi
     return (
         <div className="flex flex-col items-center justify-center min-h-screen p-4 sm:p-6 lg:p-8">
             <div className="w-full max-w-3xl text-center">
-                <h1 className="text-4xl sm:text-5xl font-bold mb-2">Chat With Your Document</h1>
+                <h1 className="text-4xl sm:text-5xl font-bold mb-2">ドキュメントとチャット</h1>
                 <p className="text-gem-offwhite/70 mb-8">
-                    Powered by <strong className="font-semibold text-gem-offwhite">FileSearch</strong>. Upload a manual or select example to see RAG in action.
+                    <strong className="font-semibold text-gem-offwhite">FileSearch</strong> を利用しています。マニュアルをアップロードするか、サンプルを選択してRAGの動作を確認してください。
                 </p>
 
                 <div className="w-full max-w-xl mx-auto mb-8">
@@ -121,11 +121,11 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onUpload, apiKeyError, fi
                             onClick={handleSelectKeyClick}
                             className="w-full bg-gem-blue hover:bg-blue-500 text-white font-semibold rounded-lg py-3 px-5 text-center focus:outline-none focus:ring-2 focus:ring-gem-blue"
                         >
-                            Select Gemini API Key to Begin
+                            開始するにはGemini APIキーを選択してください
                         </button>
                     ) : (
                         <div className="w-full bg-gem-slate border border-gem-mist/50 rounded-lg py-3 px-5 text-center text-gem-teal font-semibold">
-                            ✓ API Key Selected
+                            ✓ APIキーが選択されました
                         </div>
                     )}
                      {apiKeyError && <p className="text-red-500 text-sm mt-2">{apiKeyError}</p>}
@@ -137,12 +137,12 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onUpload, apiKeyError, fi
                 >
                     <div className="flex flex-col items-center justify-center">
                         <UploadCloudIcon />
-                        <p className="mt-4 text-lg text-gem-offwhite/80">Drag & drop your PDF, .txt, or .md file here.</p>
+                        <p className="mt-4 text-lg text-gem-offwhite/80">PDF、.txt、または.mdファイルをここにドラッグ＆ドロップしてください。</p>
                         <input id="file-upload" type="file" multiple className="hidden" onChange={handleFileChange} accept=".pdf,.txt,.md"/>
                          <label 
                             htmlFor="file-upload" 
                             className="mt-4 cursor-pointer px-6 py-2 bg-gem-blue text-white rounded-full font-semibold hover:bg-blue-500 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gem-onyx focus:ring-gem-blue" 
-                            title="Select files from your device"
+                            title="デバイスからファイルを選択"
                             tabIndex={0}
                             onKeyDown={e => {
                                 if (e.key === 'Enter' || e.key === ' ') {
@@ -151,14 +151,14 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onUpload, apiKeyError, fi
                                 }
                             }}
                          >
-                            Or Browse Files
+                            またはファイルを参照
                         </label>
                     </div>
                 </div>
 
                 {files.length > 0 && (
                     <div className="w-full max-w-xl mx-auto mb-6 text-left">
-                        <h4 className="font-semibold mb-2">Selected Files ({files.length}):</h4>
+                        <h4 className="font-semibold mb-2">選択されたファイル ({files.length}件):</h4>
                         <ul className="max-h-36 overflow-y-auto space-y-1 pr-2">
                             {files.map((file, index) => (
                                 <li key={`${file.name}-${index}`} className="text-sm bg-gem-mist/50 p-2 rounded-md flex justify-between items-center group">
@@ -168,8 +168,8 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onUpload, apiKeyError, fi
                                         <button 
                                             onClick={() => handleRemoveFile(index)}
                                             className="ml-2 p-1 text-red-400 hover:text-red-300 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                                            aria-label={`Remove ${file.name}`}
-                                            title="Remove this file"
+                                            aria-label={`${file.name} を削除`}
+                                            title="このファイルを削除"
                                         >
                                             <TrashIcon />
                                         </button>
@@ -186,21 +186,21 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onUpload, apiKeyError, fi
                             onClick={handleConfirmUpload}
                             disabled={!isApiKeySelected}
                             className="w-full px-6 py-3 rounded-md bg-gem-blue hover:bg-blue-500 text-white font-bold transition-colors disabled:bg-gem-mist/50 disabled:cursor-not-allowed"
-                            title={!isApiKeySelected ? "Please select an API key first" : "Start chat session with the selected files"}
+                            title={!isApiKeySelected ? "まずAPIキーを選択してください" : "選択したファイルでチャットセッションを開始"}
                         >
-                            Upload and Chat
+                            アップロードしてチャット
                         </button>
                     )}
                 </div>
                 
                 <div className="flex items-center my-8">
                     <div className="flex-grow border-t border-gem-mist"></div>
-                    <span className="flex-shrink mx-4 text-gem-offwhite/60">OR</span>
+                    <span className="flex-shrink mx-4 text-gem-offwhite/60">または</span>
                     <div className="flex-grow border-t border-gem-mist"></div>
                 </div>
 
                 <div className="text-left mb-4">
-                    <p className="text-gem-offwhite/80">Try an example:</p>
+                    <p className="text-gem-offwhite/80">サンプルを試す:</p>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
                     {sampleDocuments.map(doc => (
@@ -209,7 +209,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onUpload, apiKeyError, fi
                             onClick={() => handleSelectSample(doc.name, doc.url, doc.fileName)}
                             disabled={!!loadingSample}
                             className="bg-gem-slate p-4 rounded-lg border border-gem-mist/30 hover:border-gem-blue/50 hover:bg-gem-mist/10 transition-all text-left flex items-center space-x-4 disabled:opacity-50 disabled:cursor-wait"
-                            title={`Chat with the ${doc.name}`}
+                            title={`${doc.name} とチャット`}
                         >
                             <div className="w-16 h-16 flex items-center justify-center flex-shrink-0 bg-gem-mist/20 rounded-lg">
                                 {loadingSample === doc.name ? <Spinner /> : doc.icon}

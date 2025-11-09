@@ -127,14 +127,14 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ documentName, history, is
         <div className="flex flex-col h-full relative">
             <header className="absolute top-0 left-0 right-0 p-4 bg-gem-onyx/80 backdrop-blur-sm z-10 flex justify-between items-center border-b border-gem-mist">
                 <div className="w-full max-w-4xl mx-auto flex justify-between items-center px-4">
-                    <h1 className="text-2xl font-bold text-gem-offwhite truncate" title={`Chat with ${documentName}`}>Chat with {documentName}</h1>
+                    <h1 className="text-2xl font-bold text-gem-offwhite truncate" title={`${documentName} とチャット`}>{documentName} とチャット</h1>
                     <button
                         onClick={onNewChat}
                         className="flex items-center px-4 py-2 bg-gem-blue hover:bg-blue-500 rounded-full text-white transition-colors flex-shrink-0"
-                        title="End current chat and start a new one"
+                        title="現在のチャットを終了して新しいチャットを開始"
                     >
                         <RefreshIcon />
-                        <span className="ml-2 hidden sm:inline">New Chat</span>
+                        <span className="ml-2 hidden sm:inline">新しいチャット</span>
                     </button>
                 </div>
             </header>
@@ -151,7 +151,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ documentName, history, is
                                 <div dangerouslySetInnerHTML={renderMarkdown(message.parts[0].text)} />
                                 {message.role === 'model' && message.groundingChunks && message.groundingChunks.length > 0 && (
                                     <div className="mt-4 pt-3 border-t border-gem-mist/50">
-                                        <h4 className="text-xs font-semibold text-gem-offwhite/70 mb-2 text-right">Sources:</h4>
+                                        <h4 className="text-xs font-semibold text-gem-offwhite/70 mb-2 text-right">ソース:</h4>
                                         <div className="flex flex-wrap gap-2 justify-end">
                                             {message.groundingChunks.map((chunk, chunkIndex) => (
                                                 chunk.retrievedContext?.text && (
@@ -159,10 +159,10 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ documentName, history, is
                                                         key={chunkIndex}
                                                         onClick={() => handleSourceClick(chunk.retrievedContext!.text!)}
                                                         className="bg-gem-mist/50 hover:bg-gem-mist text-xs px-3 py-1 rounded-md transition-colors"
-                                                        aria-label={`View source ${chunkIndex + 1}`}
-                                                        title="View source document chunk"
+                                                        aria-label={`ソース ${chunkIndex + 1} を表示`}
+                                                        title="ソースドキュメントのチャンクを表示"
                                                     >
-                                                        Source {chunkIndex + 1}
+                                                        ソース {chunkIndex + 1}
                                                     </button>
                                                 )
                                             ))}
@@ -190,9 +190,9 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ documentName, history, is
                             <button
                                 onClick={() => setQuery(currentSuggestion)}
                                 className="text-base text-gem-offwhite bg-gem-slate hover:bg-gem-mist transition-colors px-4 py-2 rounded-full"
-                                title="Use this suggestion as your prompt"
+                                title="この提案をプロンプトとして使用"
                             >
-                                Try: "{currentSuggestion}"
+                                試す: "{currentSuggestion}"
                             </button>
                         )}
                     </div>
@@ -201,11 +201,11 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ documentName, history, is
                             type="text"
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
-                            placeholder="Ask a question about the manuals..."
+                            placeholder="マニュアルについて質問する..."
                             className="flex-grow bg-gem-mist border border-gem-mist/50 rounded-full py-3 px-5 focus:outline-none focus:ring-2 focus:ring-gem-blue"
                             disabled={isQueryLoading}
                         />
-                        <button type="submit" disabled={isQueryLoading || !query.trim()} className="p-3 bg-gem-blue hover:bg-blue-500 rounded-full text-white disabled:bg-gem-mist transition-colors" title="Send message">
+                        <button type="submit" disabled={isQueryLoading || !query.trim()} className="p-3 bg-gem-blue hover:bg-blue-500 rounded-full text-white disabled:bg-gem-mist transition-colors" title="メッセージを送信">
                             <SendIcon />
                         </button>
                     </form>
@@ -221,15 +221,15 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ documentName, history, is
                     aria-labelledby="source-modal-title"
                 >
                     <div className="bg-gem-slate p-6 rounded-lg shadow-xl w-full max-w-2xl max-h-[80vh] flex flex-col" onClick={e => e.stopPropagation()}>
-                        <h3 id="source-modal-title" className="text-xl font-bold mb-4">Source Text</h3>
+                        <h3 id="source-modal-title" className="text-xl font-bold mb-4">ソーステキスト</h3>
                         <div 
                             className="flex-grow overflow-y-auto pr-4 text-gem-offwhite/80 border-t border-b border-gem-mist py-4"
                             dangerouslySetInnerHTML={renderMarkdown(modalContent || '')}
                         >
                         </div>
                         <div className="flex justify-end mt-6">
-                            <button onClick={closeModal} className="px-6 py-2 rounded-md bg-gem-blue hover:bg-blue-500 text-white transition-colors" title="Close source view">
-                                Close
+                            <button onClick={closeModal} className="px-6 py-2 rounded-md bg-gem-blue hover:bg-blue-500 text-white transition-colors" title="ソース表示を閉じる">
+                                閉じる
                             </button>
                         </div>
                     </div>
