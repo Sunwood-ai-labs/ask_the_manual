@@ -1,20 +1,35 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# マニュアルに聞こう (ドキュメントとチャット)
 
-# Run and deploy your AI Studio app
+これは、ユーザーがドキュメントをアップロードし、その内容についてチャット形式で質問できるインタラクティブなWebアプリケーションです。GoogleのGemini APIとFileSearch（RAG）を活用し、複雑なドキュメントからでも正確な情報を引き出すことができます。
 
-This contains everything you need to run your app locally.
+## ✨ 主な機能
 
-View your app in AI Studio: https://ai.studio/apps/drive/1qgtHFyWIZcpVE8bKjdJZco4Jp0CqVzzI
+- **ドキュメントのアップロード**: PDF、TXT、MD形式のファイルをドラッグ＆ドロップまたはファイル選択で簡単にアップロードできます。
+- **サンプルドキュメント**: すぐに試せるように、いくつかのサンプルマニュアルが用意されています。
+- **インタラクティブなチャット**: アップロードしたドキュメントの内容について、自然言語で質問できます。
+- **ソースの表示**: モデルの回答がドキュメントのどの部分に基づいているか、ソースを確認できます。
+- **洗練されたUI**: 「Kaisei Decol」フォントを使用した美しい日本語のインターフェースと、黒を基調とした目に優しいダークモードを採用しています。
+- **動的なデザイン**: ボタンや主要な要素には、暖色のグラデーションアニメーションが施され、視覚的に魅力的です。
+- **APIキー連携**: ユーザー自身のGemini APIキーを使用して、安全にサービスを利用できます。
 
-## Run Locally
+## 🚀 使い方
 
-**Prerequisites:**  Node.js
+1.  **APIキーの選択**: アプリケーションを開くと、まずGemini APIキーの選択を求められます。ボタンをクリックして、お持ちのキーを選択してください。
+2.  **ドキュメントの準備**:
+    - **ローカルファイル**: お手持ちのマニュアルなどのファイルを、指定されたエリアにドラッグ＆ドロップするか、「またはファイルを参照」ボタンから選択します。
+    - **サンプル**: 「サンプルを試す」セクションから、用意されたドキュメントを選択することもできます。
+3.  **チャットの開始**: ファイルを選択したら、「アップロードしてチャット」ボタンをクリックします。ファイルの処理が完了すると、チャット画面に移行します。
+4.  **質問する**: チャット画面の下部にある入力欄に、ドキュメントに関する質問を入力して送信します。AIが内容を解析し、回答を生成します。
+5.  **新しいチャット**: 画面右上の「新しいチャット」ボタンをクリックすると、現在のセッションを終了し、新しいドキュメントでチャットを始めることができます。
 
+## 🛠️ 技術スタック
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+- **フロントエンド**: React, TypeScript
+- **AIモデル**: Google Gemini
+- **RAG**: Google FileSearch
+- **スタイリング**: Tailwind CSS
+- **フォント**: Google Fonts (Kaisei Decol)
+
+---
+
+このアプリケーションを通じて、GeminiとFileSearchが実現する高度なドキュメント検索・要約機能をぜひご体験ください。
