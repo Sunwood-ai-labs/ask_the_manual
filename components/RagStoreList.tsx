@@ -57,7 +57,7 @@ const RagStoreList: React.FC<RagStoreListProps> = ({ stores, selectedStore, isLo
                     </button>
                     <button
                         onClick={handleCreateClick}
-                        className="p-2 bg-gem-blue hover:bg-blue-500 rounded-full text-white transition-colors disabled:bg-gem-mist"
+                        className="p-2 bg-warm-gradient animate-gradient bg-[length:200%_auto] rounded-full text-white transition-all hover:saturate-150 disabled:bg-none disabled:bg-gem-mist disabled:animate-none"
                         disabled={isLoading}
                         aria-label="Create new RAG store"
                         title="Create a new RAG store"
@@ -79,7 +79,7 @@ const RagStoreList: React.FC<RagStoreListProps> = ({ stores, selectedStore, isLo
                                 value={newStoreName}
                                 onChange={(e) => setNewStoreName(e.target.value)}
                                 placeholder="Enter store name"
-                                className="w-full bg-gem-mist border border-gem-mist/50 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-gem-blue mb-4"
+                                className="w-full bg-gem-mist border border-gem-mist/50 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-gem-warm-start mb-4"
                                 autoFocus
                             />
                             <div className="flex justify-end space-x-2">
@@ -94,7 +94,7 @@ const RagStoreList: React.FC<RagStoreListProps> = ({ stores, selectedStore, isLo
                                 <button
                                     type="submit"
                                     disabled={!newStoreName.trim()}
-                                    className="px-4 py-2 rounded-md bg-gem-blue hover:bg-blue-500 text-white transition-colors disabled:bg-gem-mist/50 disabled:cursor-not-allowed"
+                                    className="px-4 py-2 rounded-md bg-warm-gradient animate-gradient bg-[length:200%_auto] text-white transition-all hover:saturate-150 disabled:bg-none disabled:bg-gem-mist/50 disabled:cursor-not-allowed disabled:animate-none"
                                     title="Create new RAG store"
                                 >
                                     Create
@@ -119,9 +119,9 @@ const RagStoreList: React.FC<RagStoreListProps> = ({ stores, selectedStore, isLo
                         <li key={store.name} className="flex items-center justify-between group">
                             <button
                                 onClick={() => onSelect(store)}
-                                className={`w-full text-left p-3 rounded-md transition-colors text-lg ${
+                                className={`w-full text-left p-3 rounded-md transition-all text-lg ${
                                     selectedStore?.name === store.name
-                                        ? 'bg-gem-blue text-white'
+                                        ? 'bg-warm-gradient animate-gradient bg-[length:200%_auto] text-white'
                                         : 'bg-gem-mist hover:bg-gem-mist/70'
                                 }`}
                                 title={`Select ${store.displayName} to view its documents`}

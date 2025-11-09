@@ -130,7 +130,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ documentName, history, is
                     <h1 className="text-2xl font-bold text-gem-offwhite truncate" title={`${documentName} とチャット`}>{documentName} とチャット</h1>
                     <button
                         onClick={onNewChat}
-                        className="flex items-center px-4 py-2 bg-gem-blue hover:bg-blue-500 rounded-full text-white transition-colors flex-shrink-0"
+                        className="flex items-center px-4 py-2 bg-warm-gradient animate-gradient bg-[length:200%_auto] rounded-full text-white transition-all hover:saturate-150 flex-shrink-0"
                         title="現在のチャットを終了して新しいチャットを開始"
                     >
                         <RefreshIcon />
@@ -145,7 +145,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ documentName, history, is
                         <div key={index} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                             <div className={`max-w-xl lg:max-w-2xl px-5 py-3 rounded-2xl ${
                                 message.role === 'user' 
-                                ? 'bg-gem-blue text-white' 
+                                ? 'bg-warm-gradient animate-gradient bg-[length:200%_auto] text-white' 
                                 : 'bg-gem-slate'
                             }`}>
                                 <div dangerouslySetInnerHTML={renderMarkdown(message.parts[0].text)} />
@@ -202,10 +202,10 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ documentName, history, is
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
                             placeholder="マニュアルについて質問する..."
-                            className="flex-grow bg-gem-mist border border-gem-mist/50 rounded-full py-3 px-5 focus:outline-none focus:ring-2 focus:ring-gem-blue"
+                            className="flex-grow bg-gem-mist border border-gem-mist/50 rounded-full py-3 px-5 focus:outline-none focus:ring-2 focus:ring-gem-warm-start"
                             disabled={isQueryLoading}
                         />
-                        <button type="submit" disabled={isQueryLoading || !query.trim()} className="p-3 bg-gem-blue hover:bg-blue-500 rounded-full text-white disabled:bg-gem-mist transition-colors" title="メッセージを送信">
+                        <button type="submit" disabled={isQueryLoading || !query.trim()} className="p-3 bg-warm-gradient animate-gradient bg-[length:200%_auto] rounded-full text-white disabled:bg-none disabled:bg-gem-mist disabled:animate-none transition-all hover:saturate-150" title="メッセージを送信">
                             <SendIcon />
                         </button>
                     </form>
@@ -228,7 +228,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ documentName, history, is
                         >
                         </div>
                         <div className="flex justify-end mt-6">
-                            <button onClick={closeModal} className="px-6 py-2 rounded-md bg-gem-blue hover:bg-blue-500 text-white transition-colors" title="ソース表示を閉じる">
+                            <button onClick={closeModal} className="px-6 py-2 rounded-md bg-warm-gradient animate-gradient bg-[length:200%_auto] text-white transition-all hover:saturate-150" title="ソース表示を閉じる">
                                 閉じる
                             </button>
                         </div>

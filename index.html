@@ -15,6 +15,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ドキュメントとチャット</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -26,16 +29,25 @@
               'gem-mist': '#e2e8f0',
               'gem-offwhite': '#1e293b',
               'gem-teal': '#0d9488',
-              'gem-blue': '#2563eb',
+              'gem-warm-start': '#f97316',
+              'gem-warm-mid': '#ef4444',
+            },
+            backgroundImage: {
+              'warm-gradient': 'linear-gradient(to right, #f97316, #ef4444, #ec4899, #d946ef)',
             },
             keyframes: {
               'progress-stripes': {
                 'from': { backgroundPosition: '1rem 0' },
                 'to': { backgroundPosition: '0 0' },
               },
+              'gradient-animation': {
+                '0%, 100%': { backgroundPosition: '0% 50%' },
+                '50%': { backgroundPosition: '100% 50%' },
+              },
             },
             animation: {
               'progress-stripes': 'progress-stripes 1s linear infinite',
+              'gradient': 'gradient-animation 4s ease infinite',
             },
           }
         }

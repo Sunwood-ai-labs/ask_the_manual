@@ -22,7 +22,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ progress, total, message, fil
         <p className="text-gem-offwhite/70 mb-4 h-6 truncate max-w-full px-4" title={fileName}>{fileName || ''}</p>
         <div className="w-full max-w-md bg-gem-mist rounded-full h-4 overflow-hidden">
             <div
-                className="bg-gem-blue h-4 rounded-full transition-all duration-300 ease-in-out animate-progress-stripes"
+                className="bg-warm-gradient animate-gradient bg-[length:200%_auto] h-4 rounded-full transition-all duration-300 ease-in-out animate-progress-stripes"
                 style={{ 
                     width: `${percentage}%`,
                     backgroundImage: 'linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent)',

@@ -80,7 +80,7 @@ const DocumentList: React.FC<DocumentListProps> = ({ selectedStore, documents, i
                 <h2 className="text-xl font-bold truncate" title={selectedStore.displayName}>Documents</h2>
                 <button
                     onClick={handleUploadClick}
-                    className="p-2 bg-gem-blue hover:bg-blue-500 rounded-full text-white transition-colors disabled:bg-gem-mist disabled:cursor-not-allowed"
+                    className="p-2 bg-warm-gradient animate-gradient bg-[length:200%_auto] rounded-full text-white transition-all hover:saturate-150 disabled:bg-none disabled:bg-gem-mist disabled:cursor-not-allowed"
                     disabled={!!processingFile}
                     aria-label="Upload document"
                     title="Upload a new document to this store"
@@ -101,7 +101,7 @@ const DocumentList: React.FC<DocumentListProps> = ({ selectedStore, documents, i
                                 type="file"
                                 ref={fileInputRef}
                                 onChange={handleFileChange}
-                                className="w-full text-sm text-gem-offwhite file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gem-blue file:text-white hover:file:bg-blue-500"
+                                className="w-full text-sm text-gem-offwhite file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gem-warm-start file:text-white hover:file:bg-gem-warm-mid"
                             />
                             {selectedFile && <p className="text-sm mt-2 text-gem-offwhite/70">Selected: {selectedFile.name}</p>}
                         </div>
@@ -111,15 +111,15 @@ const DocumentList: React.FC<DocumentListProps> = ({ selectedStore, documents, i
                             <div className="space-y-2 max-h-48 overflow-y-auto pr-2">
                                 {metadata.map((item, index) => (
                                     <div key={index} className="flex items-center space-x-2">
-                                        <input type="text" placeholder="Key" value={item.key} onChange={(e) => handleMetadataChange(index, 'key', e.target.value)} className="w-1/2 bg-gem-mist border border-gem-mist/50 rounded-md py-1 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-gem-blue" />
-                                        <input type="text" placeholder="Value" value={item.value} onChange={(e) => handleMetadataChange(index, 'value', e.target.value)} className="w-1/2 bg-gem-mist border border-gem-mist/50 rounded-md py-1 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-gem-blue" />
+                                        <input type="text" placeholder="Key" value={item.key} onChange={(e) => handleMetadataChange(index, 'key', e.target.value)} className="w-1/2 bg-gem-mist border border-gem-mist/50 rounded-md py-1 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-gem-warm-start" />
+                                        <input type="text" placeholder="Value" value={item.value} onChange={(e) => handleMetadataChange(index, 'value', e.target.value)} className="w-1/2 bg-gem-mist border border-gem-mist/50 rounded-md py-1 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-gem-warm-start" />
                                         <button onClick={() => removeMetadataRow(index)} className="p-1 text-red-400 hover:text-red-300 rounded-full" aria-label="Remove metadata row" title="Remove metadata row">
                                             <TrashIcon />
                                         </button>
                                     </div>
                                 ))}
                             </div>
-                            <button onClick={addMetadataRow} className="mt-2 flex items-center text-sm text-gem-blue hover:text-blue-400" title="Add another metadata field">
+                            <button onClick={addMetadataRow} className="mt-2 flex items-center text-sm text-gem-warm-start hover:text-gem-warm-mid" title="Add another metadata field">
                                 <PlusIcon /> <span className="ml-1">Add Metadata</span>
                             </button>
                         </div>
@@ -128,7 +128,7 @@ const DocumentList: React.FC<DocumentListProps> = ({ selectedStore, documents, i
                             <button type="button" onClick={handleModalClose} className="px-4 py-2 rounded-md bg-gem-mist hover:bg-gem-mist/70 transition-colors" title="Cancel upload">
                                 Cancel
                             </button>
-                            <button type="button" onClick={handleConfirmUpload} disabled={!selectedFile} className="px-4 py-2 rounded-md bg-gem-blue hover:bg-blue-500 text-white transition-colors disabled:bg-gem-mist/50 disabled:cursor-not-allowed" title="Upload selected file">
+                            <button type="button" onClick={handleConfirmUpload} disabled={!selectedFile} className="px-4 py-2 rounded-md bg-warm-gradient animate-gradient bg-[length:200%_auto] text-white transition-all hover:saturate-150 disabled:bg-none disabled:bg-gem-mist/50 disabled:cursor-not-allowed disabled:animate-none" title="Upload selected file">
                                 Upload
                             </button>
                         </div>

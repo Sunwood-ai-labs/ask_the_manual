@@ -119,7 +119,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onUpload, apiKeyError, fi
                      {!isApiKeySelected ? (
                         <button
                             onClick={handleSelectKeyClick}
-                            className="w-full bg-gem-blue hover:bg-blue-500 text-white font-semibold rounded-lg py-3 px-5 text-center focus:outline-none focus:ring-2 focus:ring-gem-blue"
+                            className="w-full bg-warm-gradient animate-gradient bg-[length:200%_auto] text-white font-semibold rounded-lg py-3 px-5 text-center transition-all hover:saturate-150 focus:outline-none focus:ring-2 focus:ring-gem-warm-start"
                         >
                             開始するにはGemini APIキーを選択してください
                         </button>
@@ -132,7 +132,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onUpload, apiKeyError, fi
                 </div>
 
                 <div 
-                    className={`relative border-2 border-dashed rounded-lg p-10 text-center transition-colors mb-6 ${isDragging ? 'border-gem-blue bg-gem-mist/10' : 'border-gem-mist/50'}`}
+                    className={`relative border-2 border-dashed rounded-lg p-10 text-center transition-colors mb-6 ${isDragging ? 'border-gem-warm-start bg-gem-mist/10' : 'border-gem-mist/50'}`}
                     onDrop={handleDrop} onDragOver={handleDragOver} onDragLeave={handleDragLeave}
                 >
                     <div className="flex flex-col items-center justify-center">
@@ -141,7 +141,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onUpload, apiKeyError, fi
                         <input id="file-upload" type="file" multiple className="hidden" onChange={handleFileChange} accept=".pdf,.txt,.md"/>
                          <label 
                             htmlFor="file-upload" 
-                            className="mt-4 cursor-pointer px-6 py-2 bg-gem-blue text-white rounded-full font-semibold hover:bg-blue-500 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gem-onyx focus:ring-gem-blue" 
+                            className="mt-4 cursor-pointer px-6 py-2 bg-warm-gradient animate-gradient bg-[length:200%_auto] text-white rounded-full font-semibold transition-all hover:saturate-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gem-onyx focus:ring-gem-warm-start" 
                             title="デバイスからファイルを選択"
                             tabIndex={0}
                             onKeyDown={e => {
@@ -185,7 +185,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onUpload, apiKeyError, fi
                         <button 
                             onClick={handleConfirmUpload}
                             disabled={!isApiKeySelected}
-                            className="w-full px-6 py-3 rounded-md bg-gem-blue hover:bg-blue-500 text-white font-bold transition-colors disabled:bg-gem-mist/50 disabled:cursor-not-allowed"
+                            className="w-full px-6 py-3 rounded-md text-white font-bold transition-all hover:saturate-150 bg-warm-gradient animate-gradient bg-[length:200%_auto] disabled:bg-none disabled:bg-gem-mist/50 disabled:cursor-not-allowed disabled:animate-none"
                             title={!isApiKeySelected ? "まずAPIキーを選択してください" : "選択したファイルでチャットセッションを開始"}
                         >
                             アップロードしてチャット
@@ -208,7 +208,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onUpload, apiKeyError, fi
                             key={doc.name}
                             onClick={() => handleSelectSample(doc.name, doc.url, doc.fileName)}
                             disabled={!!loadingSample}
-                            className="bg-gem-slate p-4 rounded-lg border border-gem-mist/30 hover:border-gem-blue/50 hover:bg-gem-mist/10 transition-all text-left flex items-center space-x-4 disabled:opacity-50 disabled:cursor-wait"
+                            className="bg-gem-slate p-4 rounded-lg border border-gem-mist/30 hover:border-gem-warm-start/50 hover:bg-gem-mist/10 transition-all text-left flex items-center space-x-4 disabled:opacity-50 disabled:cursor-wait"
                             title={`${doc.name} とチャット`}
                         >
                             <div className="w-16 h-16 flex items-center justify-center flex-shrink-0 bg-gem-mist/20 rounded-lg">

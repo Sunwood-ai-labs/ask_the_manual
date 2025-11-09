@@ -79,10 +79,10 @@ const QueryInterface: React.FC<QueryInterfaceProps> = ({ selectedStore, isLoadin
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder="Ask a question..."
-                    className="flex-grow bg-gem-mist border border-gem-mist/50 rounded-full py-2 px-4 focus:outline-none focus:ring-2 focus:ring-gem-blue"
+                    className="flex-grow bg-gem-mist border border-gem-mist/50 rounded-full py-2 px-4 focus:outline-none focus:ring-2 focus:ring-gem-warm-start"
                     disabled={isLoading}
                 />
-                <button type="submit" disabled={isLoading || !query.trim()} className="p-3 bg-gem-blue rounded-full text-white disabled:bg-gem-mist transition-colors" title="Send query">
+                <button type="submit" disabled={isLoading || !query.trim()} className="p-3 bg-warm-gradient animate-gradient bg-[length:200%_auto] rounded-full text-white disabled:bg-none disabled:bg-gem-mist disabled:animate-none transition-all hover:saturate-150" title="Send query">
                     <SendIcon />
                 </button>
             </form>
