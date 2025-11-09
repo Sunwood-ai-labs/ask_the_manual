@@ -86,7 +86,7 @@ API_KEY="your-gemini-api-key"
 
 ## 🖼️ スクリーンショット
 
-![](2025-11-09 200852.png)
+![](https://raw.githubusercontent.com/Sunwood-ai-labs/ask_the_manual/refs/heads/main/2025-11-09%20200852.png)
 
 ## 📁 プロジェクト構成
 ```
